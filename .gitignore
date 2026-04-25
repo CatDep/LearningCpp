@@ -14,3 +14,15 @@ Debug/
 *.enc
 CMakeLists.txt
 *.bat
+TextHelper.sln
+TextHelper.vcxproj
+TextHelper.vcxproj.filters
+TextHelper.vcxproj.user
+TextHelper/.vs/
+TextHelper/x64/
+TextHelper/Debug/
+TextHelper/Release/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
