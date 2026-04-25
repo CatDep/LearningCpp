@@ -1,0 +1,16 @@
+.vs/
+*.obj
+*.exe
+*.pdb
+*.idb
+*.ilk
+*.log
+*.tlog/
+*.recipe
+x64/
+Debug/
+*.suo
+*.user
+*.enc
+CMakeLists.txt
+*.bat
