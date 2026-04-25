@@ -18,7 +18,7 @@ enum E_Menu
 void F_InputText(std::string& text)
 {
     int length = text.length();
-    std::cout << "\n\tДобавить текст" << std::endl;
+    std::cout << "\n\tДобавить текст\n\n" << std::endl;
     if (length == 0)
     {
         std::cout << "Введите свой текст ниже" << std::endl;
@@ -46,6 +46,7 @@ void F_InputText(std::string& text)
         case 2:
             break;
         default:
+            std::cout << "Неверный пункт меню" << std::endl;
             break;
         }
     }
@@ -73,29 +74,28 @@ void F_ViewLengthText(const std::string& text)
     {
         std::cout << "Вы ещё не ввели никого текста!" << std::endl;
     }
-
-
 }
-
 
 
 void F_SpaceCount(const std::string& text)
 {
+    std::cout << "\n\tКоличество пробелов в тексте\n\n" << std::endl;
+
     int length = 0;
     length = text.length();
     int count = 0;
     char space = ' ';
-    int SpaceCounter = length - 1;
+
     if (length != 0)
     {
-        for (int i = 0; i < SpaceCounter; i++)
+        for (int i = 0; i < length; i++)
         {
             if (space == text[i])
             {
                 count++;
             }
         }
-        std::cout << "Количество пробелов в тексте: " << count << "символов" << std::endl;
+        std::cout << "Количество пробелов в тексте: " << count << std::endl;
     }
     else if (length == 0)
     {
@@ -104,16 +104,55 @@ void F_SpaceCount(const std::string& text)
 }
 
 
-//void F_SimbolsCountNoSpace(std::string& text)
-//{
+void F_SimbolsCountNoSpace(const std::string& text)
+{
+    std::cout << "\n\tКоличество символов без пробелов\n\n" << std::endl;
 
-//}
+    int length = 0;
+    length = text.length();
+    int count = 0;
+    int simbolscount = 0;
+    char space = ' ';
+
+    if (length != 0)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            if (space == text[i])
+            {
+                count++;
+            }
+        }
+        simbolscount = length - count;
+        std::cout << "Количество символов в тексте без пробелов: " << simbolscount << std::endl;
+    }
+    else if (length == 0)
+    {
+        std::cout << "Вы ещё не ввели никого текста!" << std::endl;
+    }
+}
 
 
-//void F_ClearText(std::string& text)
-//{
+void F_ClearText(std::string& text)
+{
+    std::cout << "\n\tОчистка текста\n\n" << std::endl;
 
-//}
+    std::cout << "Вы уверены что хотите очистеть текст(y/n)?" << std::endl;
+    char choice = ' ';
+    std::cin >> choice;
+    switch (choice)
+    {
+    case 'y':
+        text.clear();
+        std::cout << "Текст был очищен" << std::endl;
+        break;
+    case 'n':
+        break;
+    default:
+        std::cout << "Неверный пункт меню" << std::endl;
+        break;
+    }
+}
 
 
 void F_Menu(std::string &text)
@@ -149,15 +188,16 @@ void F_Menu(std::string &text)
             F_SpaceCount(text);
             break;
         case SimbolsCountNoSpace:
-            //F_SimbolsCountNoSpace(text);
+            F_SimbolsCountNoSpace(text);
             break;
         case ClearText:
-            //F_ClearText(text);
+            F_ClearText(text);
             break;
         case Exit:
             std::exit(0);
             break;
         default:
+            std::cout << "Неверный пункт меню" << std::endl;
             break;
         }
     }
@@ -172,7 +212,5 @@ int main()
     std::string text;
 
     F_Menu(text);
-
-
 }
 
