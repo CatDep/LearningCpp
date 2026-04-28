@@ -110,31 +110,8 @@ bool CanMove(const std::vector<std::vector<char>>& map, int row, int col)
     return true;
 }
 
-bool IsTreasure(const std::vector<std::vector<char>>& map, int row, int col)
-{
-    int size = map.size();
-    if (IsInside(map, row, col) == true)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            int length = map[i].size();
-            for (int j = 0; j < length; j++)
-            {
-                if (map[row][col] == map[i][j] == 'P')
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    else
-    {
-        return false;
-    }
-}
 
-
-bool MovePlayer(std::vector<std::vector<char>>& map, char command, bool& isWin)
+bool MovePlayer(std::vector<std::vector<char>>& map, char command)
 {
     int row = 0;
     int col = 0;
@@ -197,12 +174,11 @@ int main()
         {'#','#','#','#','#'}
     };
     bool isPlay = true;
-    bool isWin = false;
     char command = ' ';
-    int row = 0;
-    int col = 0;
+    int treasureRow = 0;
+    int treasureCol = 0;
 
-    bool hasTreasure = Treasure(map, row, col);
+    bool hasTreasure = Treasure(map, treasureRow, treasureCol);
 
     if (hasTreasure == false)
     {
@@ -220,7 +196,7 @@ int main()
             isPlay = false;
             break;
         }
-        MovePlayer(map, command, isWin);
+        MovePlayer(map, command);
         
         int playerRow = 0;
         int playerCol = 0;
@@ -228,8 +204,9 @@ int main()
         FindPlayer(map, playerRow, playerCol);
 
 
-        if (playerRow == row && playerCol == col)
+        if (playerRow == treasureRow && playerCol == treasureCol)
         {
+            PrintMap(map);
             std::cout << "Вы нашли сокровище" << std::endl;
             isPlay = false;
             break;
